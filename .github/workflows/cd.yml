@@ -25,5 +25,5 @@ jobs:
             git status
             yarn install
             yarn build
-            pm2 reload PertakinaPublicClient
-            pm2 restart PertakinaPublicClient
+            pm2 reload ExampleCiCdAutoDeployVps
+            pm2 restart ExampleCiCdAutoDeployVps
