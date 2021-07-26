@@ -1,0 +1,29 @@
+name: cd
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy Using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ~/app/example-ci-cd-auto-deploy-vps
+            git pull origin master
+            git status
+            yarn install
+            yarn build
+            pm2 reload PertakinaPublicClient
+            pm2 restart PertakinaPublicClient
