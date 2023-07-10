@@ -20,7 +20,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd ~/app/example-ci-cd-auto-deploy-vps
+            cd /var/www/sample
             git pull origin master
             git status
             yarn install
